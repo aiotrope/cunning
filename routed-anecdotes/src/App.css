@@ -1,0 +1,17 @@
+.title {
+  text-decoration: none;
+  color: black;
+}
+.wrapper {
+  padding: 0.01em 16px;
+}
+.wrapper:after,
+.wrapper:before {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+nav a {
+  text-decoration: underline;
+}
