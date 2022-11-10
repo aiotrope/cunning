@@ -8,7 +8,6 @@ export const AnecdoteList = () => {
   const anecdotes = [...useSelector(getAllAnecdotes)].sort((a, b) => {
     return b.votes - a.votes
   })
-
   const dispatch = useDispatch()
 
   useEffect(() => {
