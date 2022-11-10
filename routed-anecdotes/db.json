@@ -1,0 +1,39 @@
+{
+  "anecdotes": [
+    {
+      "content": "If it hurts, do it more often",
+      "author": "Jez Humble",
+      "info": "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
+      "votes": 5,
+      "id": 1
+    },
+    {
+      "content": "Premature optimization is the root of all evil",
+      "author": "Donald Knuth",
+      "info": "http://wiki.c2.com/?PrematureOptimization",
+      "votes": 10,
+      "id": 2
+    },
+    {
+      "content": "React Patterns",
+      "author": "Michael Chan",
+      "info": "https://reactpatterns.com/",
+      "votes": 0,
+      "id": "FkrUW-C2bvAG_y1m-51ax"
+    },
+    {
+      "content": "Go To Statement Considered Harmful",
+      "author": "Edsger W. Dijkstra",
+      "info": "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
+      "votes": 0,
+      "id": "kDdnQfBVynrqZAKlP8Dfj"
+    },
+    {
+      "content": "TDD Harms Architecture",
+      "author": "Robert C. Martin",
+      "info": "http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html",
+      "votes": 0,
+      "id": "na5KcKYd43lYA8ly6KAci"
+    }
+  ]
+}

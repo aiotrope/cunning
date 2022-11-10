@@ -1,0 +1,41 @@
+.menu-nav a {
+  padding-right: 0.8rem;
+}
+
+.title {
+  color: var(--color-primary);
+}
+
+@media (max-width: 388px) {
+  .header {
+    line-height: 2.5rem;
+  }
+  .header h1 {
+    font-size: 20px;
+  }
+}
+
+.wrapper {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.wrapper:after,
+.wrapper:before {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media (min-width: 800px) {
+  .wrapper {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .wrapper {
+    padding-left: 10rem;
+    padding-right: 10rem;
+  }
+}
