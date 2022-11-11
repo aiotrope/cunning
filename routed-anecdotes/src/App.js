@@ -8,7 +8,7 @@ import { Footer } from './components/Footer'
 import { Anecdote } from './components/Anecdote'
 import { Notification } from './components/Notification'
 
-import './App.css'
+import './App.scss'
 
 const Menu = () => {
   let activeStyle = {

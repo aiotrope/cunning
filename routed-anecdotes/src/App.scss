@@ -1,9 +1,11 @@
+@import 'index';
+
 .menu-nav a {
   padding-right: 0.8rem;
 }
 
 .title {
-  color: var(--color-primary);
+  color: $color-primary;
 }
 
 @media (max-width: 388px) {

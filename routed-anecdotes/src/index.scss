@@ -1,0 +1,37 @@
+@import 'utilities/variables';
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: $font-stack;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $color-initial;
+  color: $color-primary;
+  font-size: 1.6rem;
+  font-weight: $font-regular;
+  letter-spacing: 0.01em;
+  line-height: 1.8;
+}
+
+a {
+  color: $color-secondary;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $color-primary;
+}
