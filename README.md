@@ -14,3 +14,5 @@ Date: 07.11.2022
 - [Solution for Exercise 7.4 - 7.6](https://github.com/aiotrope/cunning/tree/7.4/routed-anecdotes)
 
 - [Solution for Exercise 7.7](https://github.com/aiotrope/cunning/tree/7.4/country-hook)
+
+- [Solution for Exercise 7.8](https://github.com/aiotrope/cunning/tree/7.4/ultimate-hooks)
