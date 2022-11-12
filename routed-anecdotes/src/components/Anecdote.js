@@ -16,7 +16,7 @@ export const Anecdote = () => {
     } catch (rejectedValueOrSerializedError) {
       console.error(rejectedValueOrSerializedError)
     }
-  }, [])
+  }, [dispatch, id])
 
   return (
     <div>
