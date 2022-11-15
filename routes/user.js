@@ -5,7 +5,7 @@ const User = require('../models/user')
 
 const router = express.Router()
 
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
   const { username, name, password } = req.body
 
   const regex = /^[a-zA-Z0-9$&+,:;=?@#|'<>.^*()%!-{}€"'ÄöäÖØÆ`~_]{3,}$/gm
@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
   }
 })
 
-router.get('/', async (req, res) => {
+router.get('/all', async (req, res) => {
   const user = await User.find({}).populate('blogs', { title: 1, author: 1, slug:1, likes: 1 })
 
   res.status(200).json(user)

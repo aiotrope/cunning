@@ -1,0 +1,54 @@
+@import "utilities/variable";
+
+.header {
+  margin-top: 3rem;
+}
+
+.menu-nav {
+  padding-top: 0.5rem;
+  padding-bottom: 5rem;
+}
+
+.menu-nav a {
+  padding-right: 2rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.bg-red {
+  color: $color-initial;
+  background-color: $color-danger;
+}
+
+.bg-green {
+  color: $color-initial;
+  background-color: $color-applause;
+}
+
+.bg-blue {
+  color: $color-initial;
+  background-color: $color-blue;
+}
+
+.panel {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding: 1em 10px;
+}
+
+.panel:before,
+.panel:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.text-danger {
+  color: $color-danger
+}
