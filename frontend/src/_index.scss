@@ -1,0 +1,10 @@
+@import "utilities/normalize";
+@import "utilities/skeleton";
+@import "utilities/variables";
+
+html,
+body {
+  overflow-y: scroll;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

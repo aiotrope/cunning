@@ -1,42 +1,31 @@
 const mongoose = require('mongoose')
 
-const BlogSchema = new mongoose.Schema(
+const CommentSchema = new mongoose.Schema(
   {
-    title: {
+    remark: {
       type: String,
       required: true,
       trim: true,
     },
-    author: {
-      type: String,
-      trim: true,
-    },
-    url: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    likes: {
-      type: Number,
-      default: 0,
-    },
-    user: [
+    commenter: [
       {
         type: mongoose.Schema.Types.ObjectId,
+        required: true,
         ref: 'User',
       },
     ],
-    comments: [
+    commentFor: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment',
+        required: true,
+        ref: 'Blog',
       },
     ],
   },
   { timestamps: true }
 )
 
-BlogSchema.set('toJSON', {
+CommentSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -44,6 +33,6 @@ BlogSchema.set('toJSON', {
   },
 })
 
-const Blog = mongoose.model('Blog', BlogSchema)
+const Comment = mongoose.model('Comment', CommentSchema)
 
-module.exports = Blog
+module.exports = Comment

@@ -1,39 +1,44 @@
 const mongoose = require('mongoose')
 
-const UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    unique: true,
-    trim: true,
-    required: true,
-    minLength: 3,
-    validate: {
-      validator: (val) => {
-        return /^[a-zA-Z0-9$&+,:;=?@#|'<>.^*()%!-{}€"'ÄöäÖØÆ`~_]{3,}$/gm.test(
-          val
-        )
+const UserSchema = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      unique: true,
+      trim: true,
+      required: true,
+      minLength: 3,
+      validate: {
+        validator: (val) => {
+          return /^[a-zA-Z0-9$&+,:;=?@#|'<>.^*()%!-{}€"'ÄöäÖØÆ`~_]{3,}$/gm.test(
+            val
+          )
+        },
+        message: (props) => `${props.value} is not a valid username!`,
       },
-      message: (props) => `${props.value} is not a valid username!`,
     },
-  },
-  name: {
-    type: String,
-    trim: true,
-    validate: {
-      validator: (val) => {
-        return /^[a-zA-Z]{0,}[\s]?[a-zA-Z.]{0,}?[a-zA-Z]{0,}[\s]?[a-zA-Z.]{0,}?[a-zA-Z]{0,}[\s]?[a-zA-Z.]{0,}?$/gm.test(val)
+    name: {
+      type: String,
+      trim: true,
+      validate: {
+        validator: (val) => {
+          return /^[a-zA-Z]{0,}[\s]?[a-zA-Z.]{0,}?[a-zA-Z]{0,}[\s]?[a-zA-Z.]{0,}?[a-zA-Z]{0,}[\s]?[a-zA-Z.]{0,}?$/gm.test(
+            val
+          )
+        },
+        message: (props) => `${props.value} is not a valid name!`,
       },
-      message: (props) => `${props.value} is not a valid name!`,
     },
+    passwordHash: { type: String },
+    blogs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Blog',
+      },
+    ],
   },
-  passwordHash: { type: String },
-  blogs: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Blog',
-    },
-  ],
-})
+  { timestamps: true }
+)
 
 UserSchema.set('toJSON', {
   transform: (document, retObject) => {

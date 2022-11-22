@@ -3,17 +3,13 @@ const express = require('express')
 const Blog = require('../models/blog')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
-const logger = require('../utils/logger')
-
 const router = express.Router()
+//const logger = require('../utils/logger')
 
 router.post('/', async (req, res) => {
-  const { title, url, author, likes } = req.body
-
   jwt.verify(req.token, config.jwt_key)
-
+  const { title, url, author, likes } = req.body
   const user = req.user
-
   const blog = new Blog({
     title: title,
     author: author,
@@ -21,9 +17,7 @@ router.post('/', async (req, res) => {
     likes: likes,
     user: mongoose.Types.ObjectId(user.id),
   })
-
   const regex = /^(ftp|http|https):\/\/[^ "]+$/
-
   const testUrl = regex.test(req.body.url)
 
   if (!title) {
@@ -34,13 +28,10 @@ router.post('/', async (req, res) => {
     throw Error('invalid URL!')
   } else {
     const newBlog = await Blog.create(blog)
-
     const currentUser = req.currentUser
-
     currentUser.blogs = currentUser.blogs.concat(newBlog._id)
 
     await currentUser.save()
-
     const response = {
       id: newBlog.id,
       title: newBlog.title,
@@ -49,18 +40,13 @@ router.post('/', async (req, res) => {
       likes: newBlog.likes,
       message: `a new blog ${newBlog.title} by ${newBlog.author}`,
     }
-
     res.status(201).json(response)
   }
-
-  logger.warn(user.username)
 })
 
 router.get('/', async (req, res) => {
   jwt.verify(req.token, config.jwt_key)
-
   const user = req.user
-
   const blogs = await Blog.find({}, 'title author url likes').populate('user', {
     username: 1,
     name: 1,
@@ -72,14 +58,12 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-
   jwt.verify(req.token, config.jwt_key)
-
   const user = req.user
-
   const id = req.params.id
-
   const blog = await Blog.findById(id)
+    .populate('user', { username: 1, name: 1 })
+    .populate('comments', { remark: 1, commenter:1, commentFor: 1, createdAt:1 })
 
   if (blog && user) {
     res.status(200).json(blog)
@@ -89,17 +73,9 @@ router.get('/:id', async (req, res) => {
 })
 
 router.delete('/:id', async (req, res) => {
-  const blog = await Blog.findById(req.params.id)
-
-  //logger.warn(blog.user.toString())
-
   jwt.verify(req.token, config.jwt_key)
-
-  //const user = await User.findById(decoded.id)
-  //const userBlog = user.id.toString()
-
+  const blog = await Blog.findById(req.params.id)
   const user = req.user
-  //logger.warn(user)
 
   if (!blog) {
     throw Error('cannot delete unknown blog!')
@@ -110,7 +86,9 @@ router.delete('/:id', async (req, res) => {
   } else if (blog.user.toString() === user.id) {
     await Blog.findByIdAndDelete(req.params.id)
 
-    res.status(200).json({ message: `${blog.title} by ${blog.author} deleted!` })
+    res
+      .status(200)
+      .json({ message: `${blog.title} by ${blog.author} deleted!` })
   }
 })
 
@@ -136,17 +114,15 @@ router.patch('/:id', async (req, res) => {
   if (req.body.url) {
     blog.url = req.body.url
   }
-
   if (req.body.likes) {
     blog.likes = req.body.likes
   }
-  await blog.save()
 
+  await blog.save()
   const updatedBlog = await Blog.findOne(
     { _id: req.params.id },
     'title author url likes'
   )
-
   if (updatedBlog) {
     return res.status(200).json(updatedBlog)
   }
